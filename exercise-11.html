@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="AR">
+
+<title>exercise-11</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="exercise-11_files/libs/clipboard/clipboard.min.js"></script>
+<script src="exercise-11_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="exercise-11_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="exercise-11_files/libs/quarto-html/popper.min.js"></script>
+<script src="exercise-11_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="exercise-11_files/libs/quarto-html/anchor.min.js"></script>
+<link href="exercise-11_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="exercise-11_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="exercise-11_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="exercise-11_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="exercise-11_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">exercise-11</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>AR </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="loading-in-the-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="loading-in-the-data-set">Loading in the data set:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/Mammal_lifehistories_v2.txt"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1440 Columns: 14
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (4): order, family, Genus, species
+dbl (9): mass(g), gestation(mo), newborn(g), weaning(mo), wean mass(g), AFR(...
+num (1): refs
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,440
+Columns: 14
+$ order           &lt;chr&gt; "Artiodactyla", "Artiodactyla", "Artiodactyla", "Artio…
+$ family          &lt;chr&gt; "Antilocapridae", "Bovidae", "Bovidae", "Bovidae", "Bo…
+$ Genus           &lt;chr&gt; "Antilocapra", "Addax", "Aepyceros", "Alcelaphus", "Am…
+$ species         &lt;chr&gt; "americana", "nasomaculatus", "melampus", "buselaphus"…
+$ `mass(g)`       &lt;dbl&gt; 45375.0, 182375.0, 41480.0, 150000.0, 28500.0, 55500.0…
+$ `gestation(mo)` &lt;dbl&gt; 8.13, 9.39, 6.35, 7.90, 6.80, 5.08, 5.72, 5.50, 8.93, …
+$ `newborn(g)`    &lt;dbl&gt; 3246.36, 5480.00, 5093.00, 10166.67, -999.00, 3810.00,…
+$ `weaning(mo)`   &lt;dbl&gt; 3.00, 6.50, 5.63, 6.50, -999.00, 4.00, 4.04, 2.13, 10.…
+$ `wean mass(g)`  &lt;dbl&gt; 8900, -999, 15900, -999, -999, -999, -999, -999, 15750…
+$ `AFR(mo)`       &lt;dbl&gt; 13.53, 27.27, 16.66, 23.02, -999.00, 14.89, 10.23, 20.…
+$ `max. life(mo)` &lt;dbl&gt; 142, 308, 213, 240, -999, 251, 228, 255, 300, 324, 300…
+$ `litter size`   &lt;dbl&gt; 1.85, 1.00, 1.00, 1.00, 1.00, 1.37, 1.00, 1.00, 1.00, …
+$ `litters/year`  &lt;dbl&gt; 1.00, 0.99, 0.95, -999.00, -999.00, 2.00, -999.00, 1.8…
+$ refs            &lt;dbl&gt; 1269232627, 12172326, 12892329, 121723, 12, 1291117232…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">1440</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">order</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">family</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Genus</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">618</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">species</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1191</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mass(g)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.835767e+05</td>
+<td style="text-align: right;">5.055163e+06</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">403.02</td>
+<td style="text-align: right;">7009.17</td>
+<td style="text-align: right;">1.490000e+08</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gestation(mo)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-2.872500e+02</td>
+<td style="text-align: right;">4.553600e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">4.50</td>
+<td style="text-align: right;">2.146000e+01</td>
+<td style="text-align: left;">▃▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">newborn(g)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6.703150e+03</td>
+<td style="text-align: right;">9.091252e+04</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">2.65</td>
+<td style="text-align: right;">98.00</td>
+<td style="text-align: right;">2.250000e+06</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">weaning(mo)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-4.271700e+02</td>
+<td style="text-align: right;">4.967100e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">4.800000e+01</td>
+<td style="text-align: left;">▆▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wean mass(g)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.604893e+04</td>
+<td style="text-align: right;">5.036502e+05</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999.00</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">1.907500e+07</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AFR(mo)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-4.081200e+02</td>
+<td style="text-align: right;">5.049700e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">2.50</td>
+<td style="text-align: right;">15.61</td>
+<td style="text-align: right;">2.100000e+02</td>
+<td style="text-align: left;">▆▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">max. life(mo)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-4.902600e+02</td>
+<td style="text-align: right;">6.153000e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999.00</td>
+<td style="text-align: right;">147.25</td>
+<td style="text-align: right;">1.368000e+03</td>
+<td style="text-align: left;">▇▁▅▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">litter size</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-5.563000e+01</td>
+<td style="text-align: right;">2.348800e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.27</td>
+<td style="text-align: right;">3.84</td>
+<td style="text-align: right;">1.418000e+01</td>
+<td style="text-align: left;">▁▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">litters/year</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-4.771400e+02</td>
+<td style="text-align: right;">5.000300e+02</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">-999</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: right;">7.500000e+00</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">refs</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.054762e+12</td>
+<td style="text-align: right;">3.619709e+13</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">1229.00</td>
+<td style="text-align: right;">1242249.75</td>
+<td style="text-align: right;">1.368101e+15</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>Which of the variables are categorical and which are numeric?</em></p>
+<p>Categorical variables: order, family, Genus, species</p>
+<p>Numeric variables: mass (g), gestation (mo), newborn (g), weaning (mo), wean mass (g), AFR (mo), max. life (mo), litter size, litters/year, refs</p>
+</section>
+<section id="challenge" class="level2">
+<h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
+<p><em>Replace all values of -999 (the authors’ code for missing data) with NA.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d[d <span class="sc">==</span> <span class="sc">-</span><span class="dv">999</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Drop the variables litter size and refs.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>refs, <span class="sc">-</span><span class="st">`</span><span class="at">litter size</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Rename the variable max.life(mo) to maxlife(mo).</em></p>
+<p><em>Rename the variable wean mass (g) to weanmass(g).</em></p>
+<p>Note: I actually used the names maxlife_mo and weanmass_g because R was interpreting the parentheses as functions.</p>
+<p>Second note! When I tried to run the lms below, R thought the other variables were also functions so I renamed all of them in the code chunk below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">maxlife_mo =</span> <span class="st">`</span><span class="at">max. life(mo)</span><span class="st">`</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">weanmass_g =</span> <span class="st">`</span><span class="at">wean mass(g)</span><span class="st">`</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gestation_mo =</span> <span class="st">`</span><span class="at">gestation(mo)</span><span class="st">`</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">weaning_mo =</span> <span class="st">`</span><span class="at">weaning(mo)</span><span class="st">`</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">AFR_mo =</span> <span class="st">`</span><span class="at">AFR(mo)</span><span class="st">`</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">newborn_g =</span> <span class="st">`</span><span class="at">newborn(g)</span><span class="st">`</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass_g =</span> <span class="st">`</span><span class="at">mass(g)</span><span class="st">`</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Log transform all the other numeric variables.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.double), log))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Regress the age [gestation(mo), weaning(mo), AFR(mo), and maxlife(mo)] and mass [newborn(g) and weanmass(g)] variables on overall body mass(g) and add the residuals to the dataframe as new variables [relGest, relWean, relAFR, relNewbornMass, and relWeaningMass].</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> gestation_mo, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> weaning_mo, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> AFR_mo, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> maxlife_mo, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> newborn_g, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, mass_g <span class="sc">~</span> weanmass_g, <span class="at">na.action =</span> na.exclude)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">relGest =</span> <span class="fu">resid</span>(m1),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">relWean =</span> <span class="fu">resid</span>(m2),</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">relAFR =</span> <span class="fu">resid</span>(m3),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">relLife =</span> <span class="fu">resid</span>(m4),</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">relNewbornMass =</span> <span class="fu">resid</span>(m5),</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">relWeaningMass =</span> <span class="fu">resid</span>(m6)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Plot residuals of max lifespan in relation to Order. Which mammalian orders have the highest residual lifespan?</em></p>
+<p>The orders with the highest residual lifespans are Sirenia and Perissodactyla. The orders with the highest median residual lifespans are Perissodactyla and Cetacea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> order, <span class="at">y =</span> relLife)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 848 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercise-11_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Plot residuals of newborn mass in relation to Order. Which mammalian orders have the highest residual newborn mass?</em></p>
+<p>The orders with the highest residuals of newborn mass are Carnivora and Xenarthra. The orders with the highest median residuals of newborn mass are Carnivora and Proboscidea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> order, <span class="at">y =</span> relNewbornMass)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 624 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercise-11_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Plot residuals of weaning mass in relation to Order. Which mammalian orders have the highest residual weaning mass?</em></p>
+<p>The orders with the highest residuals of weaning mass are Carnivora and Xenarthra. The orders with the highest median residuals of weaning mass are Carnivora and Proboscidea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> order, <span class="at">y =</span> relWeaningMass)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1044 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercise-11_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Run models and a model selection process to evaluate what variables best predict each of the two response variables, maxlife(mo) and AFR(mo), from the set of the following predictors: gestation(mo), newborn(g), weaning(mo), weanmass(g), litters/year, and overall body mass(g).</em></p>
+<p>Winnowing data set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(maxlife_mo) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(AFR_mo) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gestation_mo) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(newborn_g) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(weaning_mo) <span class="sc">|&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(weanmass_g) <span class="sc">|&gt;</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">`</span><span class="at">litters/year</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run models and model selection process:</p>
+<p><strong>Maxlife(mo):</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'MuMIn' was built under R version 4.5.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>m_full_ml <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, maxlife_mo <span class="sc">~</span> gestation_mo <span class="sc">+</span> newborn_g <span class="sc">+</span> weaning_mo <span class="sc">+</span> weanmass_g <span class="sc">+</span> <span class="st">`</span><span class="at">litters/year</span><span class="st">`</span> <span class="sc">+</span> mass_g, <span class="at">na.action =</span> na.fail)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>mods_ml <span class="ot">&lt;-</span> <span class="fu">dredge</span>(m_full_ml)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fixed term is "(Intercept)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mods_ml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Global model call: lm(formula = maxlife_mo ~ gestation_mo + newborn_g + weaning_mo + 
+    weanmass_g + `litters/year` + mass_g, data = d, na.action = na.fail)
+---
+Model selection table 
+   (Int) `ltt/yer` gst_mo   mss_g    nwb_g  wnn_mo     wnm_g df   logLik  AICc
+24 4.032   -0.2525 0.2953 0.08226          0.14160            6 -122.206 256.8
+32 3.920   -0.2365 0.3644 0.12140 -0.05423 0.12930            7 -121.647 257.9
+56 4.028   -0.2523 0.3004 0.09128          0.14170 -0.010890  7 -122.190 258.9
+52 4.133   -0.2692 0.2847                  0.13510  0.085860  6 -123.634 259.7
+64 3.910   -0.2343 0.3649 0.10850 -0.06342 0.12710  0.023560  8 -121.587 259.9
+60 4.084   -0.2618 0.3155         -0.03169 0.12720  0.112200  7 -123.473 261.5
+16 3.983   -0.3293 0.4800 0.13270 -0.08198                    6 -124.627 261.7
+8  4.171   -0.3687 0.3876 0.07220                             5 -125.927 262.2
+48 3.963   -0.3223 0.4774 0.10860 -0.09804          0.043410  7 -124.426 263.4
+28 4.345   -0.3087 0.2601          0.07974 0.14640            6 -125.857 264.1
+40 4.167   -0.3685 0.3922 0.08018                  -0.009642  6 -125.915 264.3
+36 4.254   -0.3786 0.3746                           0.075780  5 -126.997 264.3
+31 3.600           0.3935 0.16150 -0.08463 0.20730            6 -126.193 264.8
+44 4.137   -0.3498 0.4279         -0.06630          0.132100  6 -126.264 264.9
+23 3.747           0.2846 0.10240          0.23570            5 -127.542 265.4
+63 3.589           0.3940 0.13880 -0.09988 0.20220  0.040310  7 -126.024 266.6
+55 3.742           0.2914 0.11420          0.23570 -0.014320  6 -127.516 267.5
+12 4.462   -0.4228 0.3815          0.06221                    5 -129.556 269.4
+30 4.038   -0.2654        0.06403  0.07591 0.22560            6 -128.510 269.4
+51 3.851           0.2706                  0.23530  0.108500  5 -129.692 269.7
+26 4.276   -0.3044                 0.13490 0.21930            5 -129.795 269.9
+58 4.113   -0.2761                 0.07593 0.21700  0.066380  6 -128.936 270.3
+59 3.768           0.3331         -0.06357 0.21390  0.160200  6 -129.062 270.5
+50 3.949   -0.2546                         0.22010  0.144800  5 -130.239 270.8
+22 3.807   -0.2383        0.13660          0.24100            5 -130.379 271.1
+54 3.865   -0.2418        0.06638          0.22830  0.076760  6 -129.515 271.5
+62 4.030   -0.2636        0.05350  0.06860 0.22400  0.019140  7 -128.473 271.5
+20 4.522   -0.3614 0.5164                  0.09754            5 -131.422 273.1
+4  4.578   -0.4350 0.5632                                     4 -133.117 274.4
+21 3.545                  0.15380          0.32670            4 -134.799 277.8
+29 3.686                  0.10430  0.05324 0.32270            5 -133.895 278.1
+27 4.083           0.2524          0.09984 0.26780            5 -133.982 278.3
+53 3.595                  0.08914          0.31610  0.070930  5 -134.092 278.5
+49 3.690                                   0.31120  0.163500  4 -135.360 278.9
+61 3.675                  0.08297  0.03912 0.31810  0.037770  6 -133.757 279.9
+57 3.781                           0.04857 0.31420  0.114400  5 -134.840 280.0
+15 3.469           0.6601 0.21820 -0.16790                    5 -135.492 281.3
+47 3.450           0.6462 0.16230 -0.19860          0.093750  6 -134.624 281.7
+25 4.021                           0.15310 0.33680            4 -137.419 283.0
+43 3.652           0.5916         -0.16260          0.238900  5 -138.465 287.2
+10 4.443   -0.5228                 0.15090                    4 -139.875 287.9
+42 4.258   -0.4885                 0.08448          0.074590  5 -138.890 288.1
+14 4.267   -0.4982        0.04823  0.10680                    5 -139.211 288.7
+34 4.077   -0.4680                                  0.162100  4 -140.355 288.9
+46 4.237   -0.4870        0.01466  0.08255          0.061720  6 -138.857 290.1
+7  3.765           0.4944 0.10050                             4 -140.990 290.2
+38 4.042   -0.4658        0.02931                   0.132300  5 -140.224 290.7
+39 3.759           0.5015 0.11300                  -0.015130  5 -140.964 292.2
+19 4.258           0.5860                  0.23090            4 -142.294 292.8
+6  3.956   -0.4821        0.15180                             4 -142.618 293.4
+35 3.867           0.4807                           0.106400  4 -142.836 293.9
+11 4.139           0.5649          0.07320                    4 -149.527 307.3
+3  4.266           0.7860                                     3 -153.599 313.3
+33 3.498                                            0.235000  3 -162.425 331.0
+37 3.438                  0.05476                   0.178800  4 -162.056 332.3
+41 3.536                           0.02097          0.214100  4 -162.350 332.9
+45 3.468                  0.05234  0.01479          0.166500  5 -162.020 334.3
+13 3.503                  0.14910  0.07862                    4 -164.141 336.5
+5  3.291                  0.22350                             3 -165.615 337.3
+9  3.979                           0.22580                    3 -169.564 345.2
+18 4.862   -0.5613                         0.34100            4 -170.196 348.6
+2  5.256   -0.9758                                            3 -187.227 380.6
+17 4.495                                   0.61990            3 -188.902 383.9
+1  5.058                                                      2 -272.489 549.0
+    delta weight
+24   0.00  0.352
+32   1.03  0.211
+56   2.11  0.122
+52   2.85  0.084
+64   3.07  0.076
+60   4.68  0.034
+16   4.84  0.031
+8    5.32  0.025
+48   6.58  0.013
+28   7.30  0.009
+40   7.42  0.009
+36   7.46  0.008
+31   7.97  0.007
+44   8.11  0.006
+23   8.55  0.005
+63   9.78  0.003
+55  10.62  0.002
+12  12.58  0.001
+30  12.61  0.001
+51  12.85  0.001
+26  13.06  0.001
+58  13.46  0.000
+59  13.71  0.000
+50  13.94  0.000
+22  14.22  0.000
+54  14.62  0.000
+62  14.68  0.000
+20  16.31  0.000
+4   17.60  0.000
+21  20.96  0.000
+29  21.25  0.000
+27  21.43  0.000
+53  21.65  0.000
+49  22.08  0.000
+61  23.10  0.000
+57  23.15  0.000
+15  24.45  0.000
+47  24.84  0.000
+25  26.20  0.000
+43  30.40  0.000
+10  31.11  0.000
+42  31.24  0.000
+14  31.89  0.000
+34  32.07  0.000
+46  33.30  0.000
+7   33.34  0.000
+38  33.91  0.000
+39  35.39  0.000
+19  35.95  0.000
+6   36.60  0.000
+35  37.04  0.000
+11  50.42  0.000
+3   56.48  0.000
+33  74.13  0.000
+37  75.48  0.000
+41  76.06  0.000
+45  77.50  0.000
+13  79.65  0.000
+5   80.51  0.000
+9   88.41  0.000
+18  91.76  0.000
+2  123.74  0.000
+17 127.09  0.000
+1  292.20  0.000
+Models ranked by AICc(x) </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mods_ml_avg <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">model.avg</span>(mods_ml, <span class="at">subset =</span> delta <span class="sc">&lt;=</span> <span class="dv">4</span>, <span class="at">fit =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mods_ml_avg<span class="sc">$</span>msTable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       df    logLik     AICc    delta     weight
+1235    6 -122.2064 256.8349 0.000000 0.41628746
+12345   7 -121.6473 257.8602 1.025310 0.24931596
+12356   7 -122.1902 258.9461 2.111234 0.14485872
+1256    6 -123.6338 259.6897 2.854822 0.09987957
+123456  8 -121.5873 259.9056 3.070741 0.08965829</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mods_ml_avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     2.5 %      97.5 %
+(Intercept)     3.68511191  4.32071260
+`litters/year` -0.40327078 -0.09378398
+gestation_mo    0.14160671  0.49526367
+mass_g          0.01514783  0.17918817
+weaning_mo      0.03219892  0.24097775
+newborn_g      -0.16309576  0.04978052
+weanmass_g     -0.10794856  0.16243631</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mods_ml_avg, <span class="at">full =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercise-11_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>AFR(mo):</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>m_full_afr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> d, AFR_mo <span class="sc">~</span> gestation_mo <span class="sc">+</span> newborn_g <span class="sc">+</span> weaning_mo <span class="sc">+</span> weanmass_g <span class="sc">+</span> <span class="st">`</span><span class="at">litters/year</span><span class="st">`</span> <span class="sc">+</span> mass_g, <span class="at">na.action =</span> na.fail)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>mods_afr <span class="ot">&lt;-</span> <span class="fu">dredge</span>(m_full_afr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fixed term is "(Intercept)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mods_afr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Global model call: lm(formula = AFR_mo ~ gestation_mo + newborn_g + weaning_mo + 
+    weanmass_g + `litters/year` + mass_g, data = d, na.action = na.fail)
+---
+Model selection table 
+    (Int) `ltt/yer` gst_mo      mss_g     nwb_g wnn_mo      wnm_g df   logLik
+24 1.9730   -0.7097 0.4030  0.0361900           0.1447             6 -154.402
+52 2.0130   -0.7160 0.3959                      0.1422  0.0386700  6 -154.550
+20 2.1890   -0.7576 0.5002                      0.1253             5 -155.758
+28 2.1000   -0.7314 0.3731             0.039570 0.1495             6 -154.699
+56 1.9740   -0.7097 0.4018  0.0340800           0.1447  0.0025420  7 -154.402
+32 1.9690   -0.7092 0.4052  0.0374800 -0.001784 0.1443             7 -154.402
+60 2.0240   -0.7176 0.3894             0.006722 0.1439  0.0330800  7 -154.544
+4  2.2610   -0.8522 0.5603                                         4 -157.961
+8  2.1150   -0.8284 0.4973  0.0259100                              5 -157.256
+36 2.1410   -0.8313 0.4905                              0.0280500  5 -157.319
+64 1.9680   -0.7087 0.4053  0.0350400 -0.003523 0.1438  0.0044560  8 -154.400
+12 2.2200   -0.8479 0.4971             0.021670                    5 -157.627
+16 2.0400   -0.8126 0.5342  0.0500700 -0.032750                    6 -157.104
+44 2.0840   -0.8172 0.5166            -0.032440         0.0556300  6 -157.189
+40 2.1160   -0.8284 0.4955  0.0227500                   0.0038150  6 -157.254
+48 2.0270   -0.8083 0.5326  0.0351400 -0.042710         0.0269200  7 -157.047
+26 2.0030   -0.7252                    0.118700 0.2540             5 -160.759
+30 2.1000   -0.7413        -0.0263300  0.143000 0.2514             6 -160.599
+58 2.0600   -0.7352                    0.139600 0.2548 -0.0234800  6 -160.680
+62 2.1010   -0.7413        -0.0260800  0.143100 0.2514 -0.0004539  7 -160.599
+50 1.7570   -0.6958                             0.2604  0.1206000  5 -163.882
+54 1.7560   -0.6956         0.0007948           0.2605  0.1197000  6 -163.882
+22 1.6660   -0.6903         0.1104000           0.2804             5 -165.384
+10 2.1960   -0.9783                    0.137300                    4 -170.778
+14 2.3560   -1.0010        -0.0439300  0.177400                    5 -170.371
+42 2.2300   -0.9847                    0.149600        -0.0138400  5 -170.753
+46 2.3320   -0.9920        -0.0696900  0.158800         0.0473500  6 -170.217
+34 1.9090   -0.9482                                     0.1410000  4 -174.094
+38 1.9580   -0.9513        -0.0415100                   0.1832000  5 -173.905
+6  1.8380   -0.9738         0.1280000                              4 -177.198
+23 1.1710           0.3730  0.0928100           0.4093             5 -181.996
+31 1.0100           0.4925  0.1577000 -0.092950 0.3780             6 -181.039
+51 1.2630           0.3584                      0.4089  0.0990200  5 -182.955
+63 0.9943           0.4933  0.1267000 -0.113800 0.3711  0.0551200  7 -180.853
+55 1.1690           0.3764  0.0986900           0.4093 -0.0071260  6 -181.992
+59 1.1580           0.4377            -0.080660 0.3818  0.1645000  6 -182.351
+18 2.5180   -0.9512                             0.3611             4 -185.801
+27 1.4820           0.3548             0.087190 0.4371             5 -185.472
+49 1.0500                                       0.5094  0.1718000  4 -188.875
+29 1.1180                   0.0860700  0.079640 0.5225             5 -188.145
+21 0.9066                   0.1602000           0.5284             4 -189.338
+57 1.1750                              0.066690 0.5135  0.1044000  5 -188.292
+19 1.6340           0.6461                      0.4049             4 -189.401
+53 0.9794                   0.0662700           0.5130  0.1030000  5 -188.460
+25 1.3940                              0.162100 0.5342             4 -189.578
+61 1.1030                   0.0567700  0.060220 0.5162  0.0519500  6 -187.992
+47 0.7391           0.9561  0.1697000 -0.295000         0.1532000  6 -197.219
+15 0.7708           0.9788  0.2611000 -0.244800                    5 -198.478
+43 0.9509           0.8990            -0.257300         0.3050000  5 -199.525
+2  2.9350   -1.3900                                                3 -202.265
+7  1.2020           0.7372  0.0895100                              4 -204.795
+35 1.2910           0.7234                              0.0953200  4 -205.530
+39 1.1990           0.7412  0.0965600                  -0.0085300  5 -204.790
+3  1.6480           0.9969                                         3 -210.367
+11 1.5720           0.8649             0.043700                    4 -209.544
+17 1.8960                                       0.8337             3 -226.984
+33 0.7353                                               0.2888000  3 -229.180
+41 0.7752                              0.021570         0.2673000  4 -229.139
+37 0.7239                   0.0104700                   0.2781000  4 -229.173
+45 0.7659                   0.0070800  0.020730         0.2609000  5 -229.136
+13 0.8218                   0.1586000  0.120700                    4 -231.840
+5  0.4949                   0.2729000                              3 -233.640
+9  1.3280                              0.277300                    3 -235.057
+1  2.6530                                                          2 -323.972
+    AICc  delta weight
+24 321.2   0.00  0.187
+52 321.5   0.30  0.161
+20 321.8   0.59  0.139
+28 321.8   0.59  0.139
+56 323.4   2.14  0.064
+32 323.4   2.14  0.064
+60 323.7   2.43  0.056
+4  324.1   2.89  0.044
+8  324.8   3.58  0.031
+36 324.9   3.71  0.029
+64 325.5   4.30  0.022
+12 325.6   4.33  0.022
+16 326.6   5.40  0.013
+44 326.8   5.57  0.012
+40 326.9   5.70  0.011
+48 328.7   7.43  0.005
+26 331.8  10.59  0.001
+30 333.6  12.39  0.000
+58 333.8  12.55  0.000
+62 335.8  14.54  0.000
+50 338.1  16.84  0.000
+54 340.2  18.96  0.000
+22 341.1  19.84  0.000
+10 349.8  28.53  0.000
+14 351.0  29.82  0.000
+42 351.8  30.58  0.000
+46 352.9  31.63  0.000
+34 356.4  35.16  0.000
+38 358.1  36.88  0.000
+6  362.6  41.37  0.000
+23 374.3  53.07  0.000
+31 374.5  53.27  0.000
+51 376.2  54.98  0.000
+63 376.3  55.05  0.000
+55 376.4  55.18  0.000
+59 377.1  55.90  0.000
+18 379.8  58.57  0.000
+27 381.2  60.02  0.000
+49 385.9  64.72  0.000
+29 386.6  65.36  0.000
+21 386.9  65.65  0.000
+57 386.9  65.66  0.000
+19 387.0  65.77  0.000
+53 387.2  65.99  0.000
+25 387.4  66.13  0.000
+61 388.4  67.18  0.000
+47 406.9  85.63  0.000
+15 407.3  86.03  0.000
+43 409.3  88.12  0.000
+2  410.6  89.42  0.000
+7  417.8  96.56  0.000
+35 419.3  98.03  0.000
+39 419.9  98.65  0.000
+3  426.9 105.63  0.000
+11 427.3 106.06  0.000
+17 460.1 138.86  0.000
+33 464.5 143.25  0.000
+41 466.5 145.25  0.000
+37 466.5 145.32  0.000
+45 468.6 147.34  0.000
+13 471.9 150.65  0.000
+5  473.4 152.17  0.000
+9  476.2 155.01  0.000
+1  652.0 330.78  0.000
+Models ranked by AICc(x) </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mods_afr_avg <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">model.avg</span>(mods_afr, <span class="at">subset =</span> delta <span class="sc">&lt;=</span> <span class="dv">4</span>, <span class="at">fit =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>mods_afr_avg<span class="sc">$</span>msTable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      df    logLik     AICc     delta     weight
+1235   6 -154.4022 321.2266 0.0000000 0.20446155
+1256   6 -154.5498 321.5216 0.2950292 0.17641962
+125    5 -155.7581 321.8162 0.5896232 0.15225677
+1245   6 -154.6993 321.8207 0.5940891 0.15191717
+12356  7 -154.4016 323.3688 2.1422572 0.07005295
+12345  7 -154.4018 323.3692 2.1426634 0.07003872
+12456  7 -154.5444 323.6544 2.4278582 0.06073079
+12     4 -157.9608 324.1206 2.8940671 0.04810309
+123    5 -157.2558 324.8115 3.5849480 0.03405258
+126    5 -157.3190 324.9379 3.7113663 0.03196677</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mods_afr_avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     2.5 %     97.5 %
+(Intercept)     1.73570076  2.3829161
+`litters/year` -0.92675475 -0.5465098
+gestation_mo    0.21943208  0.6301994
+mass_g         -0.04161694  0.1118418
+weaning_mo      0.01992847  0.2632574
+weanmass_g     -0.06532930  0.1237398
+newborn_g      -0.07846591  0.1230037</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mods_afr_avg, <span class="at">full =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercise-11_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>For each of the two response variables, indicate what is the best model overall based on AICc and how many models have a delta AICc of 4 or less?</em></p>
+<p><strong>Maxlife(mo):</strong> The best model overall uses the variables litters/year, gestation(mo), mass(g), and weaning(mo) to predict maxlife(mo). It has an AICc of 256.83. There are four other models that have a delta AICc of 4 or less, with AICc values 257.86, 258.95, 259.67, and 259.91.</p>
+<p><strong>AFR(mo):</strong> The best model overall uses the variables litters/year, gestation(mo), mass(g), and weaning(mo) to predict age at first repoduction(mo). It has an AICc of 321.23. There are nine other models that have a delta AICc of 4 or less, with AICc values 321.52, 321.82, 321,82, 323.37, 323.37, 323.65, 324.12, 324.81, and 324.94.</p>
+<p><em>What variables, if any, appear in all of this set of “top” models?</em></p>
+<p><strong>Maxlife(mo):</strong> The variables that appear in all of this set of top models are 1, 2, and 5, litters/year, gestation(mo) and weaning(mo), respectively.</p>
+<p><strong>AFR(mo):</strong> The variables that appear in all of this set of top models are variables 1 and 2, litters/year and gestation(mo), respectively.</p>
+<p><em>Calculate and plot the model-averaged coefficients and their CIs across this set of top models.</em></p>
+<p>Plotted above.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

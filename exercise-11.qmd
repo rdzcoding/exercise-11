@@ -1,0 +1,182 @@
+---
+title: "exercise-11"
+author: "AR"
+format: html
+editor: visual
+---
+
+## Loading in the data set:
+
+```{r}
+library(tidyverse)
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/Mammal_lifehistories_v2.txt"
+d <- read_tsv(f)
+```
+
+```{r}
+glimpse(d)
+skimr::skim(d)
+```
+
+*Which of the variables are categorical and which are numeric?*
+
+Categorical variables: order, family, Genus, species
+
+Numeric variables: mass (g), gestation (mo), newborn (g), weaning (mo), wean mass (g), AFR (mo), max. life (mo), litter size, litters/year, refs
+
+## Challenge
+
+*Replace all values of -999 (the authors' code for missing data) with NA.*
+
+```{r}
+d[d == -999] <- NA
+```
+
+*Drop the variables litter size and refs.*
+
+```{r}
+d <- d |>
+  select(-refs, -`litter size`)
+```
+
+*Rename the variable max.life(mo) to maxlife(mo).*
+
+*Rename the variable wean mass (g) to weanmass(g).*
+
+Note: I actually used the names maxlife_mo and weanmass_g because R was interpreting the parentheses as functions.
+
+Second note! When I tried to run the lms below, R thought the other variables were also functions so I renamed all of them in the code chunk below.
+
+```{r}
+library(tidyverse)
+d <- d |>
+  rename(
+    maxlife_mo = `max. life(mo)`, 
+    weanmass_g = `wean mass(g)`,
+    gestation_mo = `gestation(mo)`,
+    weaning_mo = `weaning(mo)`,
+    AFR_mo = `AFR(mo)`,
+    newborn_g = `newborn(g)`,
+    mass_g = `mass(g)`
+    )
+```
+
+*Log transform all the other numeric variables.*
+
+```{r}
+d <- d |>
+  mutate(across(where(is.double), log))
+```
+
+*Regress the age \[gestation(mo), weaning(mo), AFR(mo), and maxlife(mo)\] and mass \[newborn(g) and weanmass(g)\] variables on overall body mass(g) and add the residuals to the dataframe as new variables \[relGest, relWean, relAFR, relNewbornMass, and relWeaningMass\].*
+
+```{r}
+m1 <- lm(data = d, mass_g ~ gestation_mo, na.action = na.exclude)
+m2 <- lm(data = d, mass_g ~ weaning_mo, na.action = na.exclude)
+m3 <- lm(data = d, mass_g ~ AFR_mo, na.action = na.exclude)
+m4 <- lm(data = d, mass_g ~ maxlife_mo, na.action = na.exclude)
+m5 <- lm(data = d, mass_g ~ newborn_g, na.action = na.exclude)
+m6 <- lm(data = d, mass_g ~ weanmass_g, na.action = na.exclude)
+
+d <- d |>
+  mutate(
+    relGest = resid(m1),
+    relWean = resid(m2),
+    relAFR = resid(m3),
+    relLife = resid(m4),
+    relNewbornMass = resid(m5),
+    relWeaningMass = resid(m6)
+  )
+```
+
+*Plot residuals of max lifespan in relation to Order. Which mammalian orders have the highest residual lifespan?*
+
+The orders with the highest residual lifespans are Sirenia and Perissodactyla. The orders with the highest median residual lifespans are Perissodactyla and Cetacea.
+
+```{r}
+p1 <- ggplot(data = d, aes(x = order, y = relLife)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90))
+p1
+```
+
+*Plot residuals of newborn mass in relation to Order. Which mammalian orders have the highest residual newborn mass?*
+
+The orders with the highest residuals of newborn mass are Carnivora and Xenarthra. The orders with the highest median residuals of newborn mass are Carnivora and Proboscidea.
+
+```{r}
+p2 <- ggplot(data = d, aes(x = order, y = relNewbornMass)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90))
+p2
+```
+
+*Plot residuals of weaning mass in relation to Order. Which mammalian orders have the highest residual weaning mass?*
+
+The orders with the highest residuals of weaning mass are Carnivora and Xenarthra. The orders with the highest median residuals of weaning mass are Carnivora and Proboscidea.
+
+```{r}
+p3 <- ggplot(data = d, aes(x = order, y = relWeaningMass)) + geom_boxplot() + theme(axis.text.x = element_text(angle = 90))
+p3
+```
+
+*Run models and a model selection process to evaluate what variables best predict each of the two response variables, maxlife(mo) and AFR(mo), from the set of the following predictors: gestation(mo), newborn(g), weaning(mo), weanmass(g), litters/year, and overall body mass(g).*
+
+Winnowing data set:
+
+```{r}
+d <- d |>
+  drop_na(maxlife_mo) |>
+  drop_na(AFR_mo) |>
+  drop_na(gestation_mo) |>
+  drop_na(newborn_g) |>
+  drop_na(weaning_mo) |>
+  drop_na(weanmass_g) |>
+  drop_na(`litters/year`) |>
+  drop_na(mass_g)
+```
+
+Run models and model selection process:
+
+**Maxlife(mo):**
+
+```{r}
+library(MuMIn)
+m_full_ml <- lm(data = d, maxlife_mo ~ gestation_mo + newborn_g + weaning_mo + weanmass_g + `litters/year` + mass_g, na.action = na.fail)
+mods_ml <- dredge(m_full_ml)
+mods_ml
+```
+
+```{r}
+mods_ml_avg <- summary(model.avg(mods_ml, subset = delta <= 4, fit = TRUE))
+mods_ml_avg$msTable
+confint(mods_ml_avg)
+plot(mods_ml_avg, full = TRUE)
+```
+
+**AFR(mo):**
+
+```{r}
+m_full_afr <- lm(data = d, AFR_mo ~ gestation_mo + newborn_g + weaning_mo + weanmass_g + `litters/year` + mass_g, na.action = na.fail)
+mods_afr <- dredge(m_full_afr)
+mods_afr
+```
+
+```{r}
+mods_afr_avg <- summary(model.avg(mods_afr, subset = delta <= 4, fit = TRUE))
+mods_afr_avg$msTable
+confint(mods_afr_avg)
+plot(mods_afr_avg, full = TRUE)
+```
+
+*For each of the two response variables, indicate what is the best model overall based on AICc and how many models have a delta AICc of 4 or less?*
+
+**Maxlife(mo):** The best model overall uses the variables litters/year, gestation(mo), mass(g), and weaning(mo) to predict maxlife(mo). It has an AICc of 256.83. There are four other models that have a delta AICc of 4 or less, with AICc values 257.86, 258.95, 259.67, and 259.91.
+
+**AFR(mo):** The best model overall uses the variables litters/year, gestation(mo), mass(g), and weaning(mo) to predict age at first repoduction(mo). It has an AICc of 321.23. There are nine other models that have a delta AICc of 4 or less, with AICc values 321.52, 321.82, 321,82, 323.37, 323.37, 323.65, 324.12, 324.81, and 324.94.
+
+*What variables, if any, appear in all of this set of "top" models?*
+
+**Maxlife(mo):** The variables that appear in all of this set of top models are 1, 2, and 5, litters/year, gestation(mo) and weaning(mo), respectively.
+
+**AFR(mo):** The variables that appear in all of this set of top models are variables 1 and 2, litters/year and gestation(mo), respectively.
+
+*Calculate and plot the model-averaged coefficients and their CIs across this set of top models.*
+
+Plotted above.
